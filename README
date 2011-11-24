@@ -1,0 +1,31 @@
+Introduction
+============
+
+Scanline z-buffer algorithm in CPU, as a project of CG course
+
+class CScanLine
+{
+public:
+    CScanLine(int _w, int _h, QImage *_img);
+
+    void setRenderTarget(int _w, int _h, QImage *_img);
+
+    // start create target
+    void begin(TargetType _type);
+    void end();
+
+    // input
+    void vertex3d(double _x, double _y, double _z);
+    void color3f(float _r, float _g, float _b); 
+
+    // clear buffer
+    void clear(int _target, const Color4u& _c = Color4u(0,0,0,255), double _depth = 1.0);
+
+    // camera related operations, facade design model
+    void lookAt(const Vec3d& eye, const Vec3d& at, const Vec3d& up);
+    void perspective(double fovy, double aspect, double zNear, double zFar);
+    void frustum(double left, double right, double bottom, double top, double near, double far);
+    void ortho(double left, double right, double bottom, double top, double near, double far);
+
+    void setRenderState(int _state, int _val);
+};
